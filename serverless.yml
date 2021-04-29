@@ -1,0 +1,27 @@
+service: fund-data-scraper
+provider:
+  name: aws
+  region: eu-central-1 
+  memorySize: 512 
+  runtime: nodejs12.x
+  layers:
+    - arn:aws:lambda:eu-central-1:764866452798:layer:chrome-aws-lambda:20
+
+
+plugins:
+  - serverless-offline
+  
+
+functions:
+  hello:
+    handler: handler.server
+    timeout: 900
+    events:
+      - http: # this is an API Gateway HTTP event trigger 
+            path: / 
+            method: ANY 
+            cors: true 
+      - http: # all routes get proxied to the Express router 
+            path: /{proxy+} 
+            method: ANY 
+            cors: true
