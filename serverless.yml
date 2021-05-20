@@ -1,4 +1,4 @@
-service: fund-data-scraper
+service: fund-data-scraper-v2
 provider:
   name: aws
   region: eu-central-1 

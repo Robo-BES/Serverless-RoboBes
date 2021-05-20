@@ -21,6 +21,6 @@
   },
   "devDependencies": {
     "chrome-aws-lambda": "^5.5.0",
-    "serverless": "^2.35.0"
+    "serverless": "^2.39.1"
   }
 }

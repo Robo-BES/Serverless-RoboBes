@@ -7,20 +7,14 @@ const documentClient = new AWS.DynamoDB.DocumentClient();
 
 
 module.exports.updateValues = async(allData)=>{
-    let {price,volume,daily_yield,monthly_yield,
-        three_monthly_yield,six_monthly_yield,yearly_yield} = allData
+    let {code,price} = allData
     var params = {
         TableName : 'FundMetrics-65e776yxknfzlddagx47d36qku-staging',
         Item: {
             id : uuid.v4(),
             price : price,
-            date: Date.now(),
-            volume : volume,
-            daily_yield: daily_yield,
-            monthly_yield: monthly_yield,
-            three_monthly_yield: three_monthly_yield,
-            six_monthly_yield: six_monthly_yield,
-            yearly_yield: yearly_yield
+            code: code,
+            date: Date.now()
         }
       };
       // Call DynamoDB to add the item to the table

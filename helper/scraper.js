@@ -21,16 +21,13 @@ module.exports.getDailyData = async function (codes) {
       );
       await page.click("#MainContent_RadioButtonListPeriod_7");
       await page.waitForSelector(".highcharts-axis-labels");
-
-      await delay(1500);
-      let marketCap = await getMarketCap(page);
-      let yields = await getYields(page);
+		
+      await delay(2000);
+      //let yields = await getYields(page);
       let price = await getPrice(page);
       let update = {
         code: codes[i],
-        marketCap: marketCap,
-        price: price,
-        ...yields,
+        price: price
       }
       let affected = await db.updateValues(update)
       allData.push(affected)
@@ -64,16 +61,7 @@ const getYields = async (page) => {
   });
 };
 
-const getMarketCap = async (page) => {
-  return await page.evaluate(async () => {
-    return await new Promise((resolve) => {
-      let capacity = $(".top-list li")[3].children[2].innerText;
-      capacity = capacity.replaceAll(".", "");
 
-      resolve(capacity);
-    });
-  });
-};
 
 const getPrice = async (page) => {
   return await page.evaluate(async () => {
